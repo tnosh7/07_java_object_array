@@ -22,11 +22,13 @@ public class ObjectArrayEx06_연습 {
 		// 해석해보기
 		MemberManager mg = new MemberManager();	
 		Member m1 = new Member();
+		//System.out.println(m1);	링크확인용
 		mg.memberList[0] = m1;
 		m1.name = "김철수";
 		m1.num = 1001;
 		
-		m1 = new Member();		//초기화.
+		m1 = new Member();		//초기화. 새로 클래스를 연결해서 링크가 달라진다.
+		//System.out.println(m1);   링크확인용
 		mg.memberList[1] = m1;
 		m1.name = "이만수";
 		m1.num = 1002;
