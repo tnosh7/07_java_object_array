@@ -24,7 +24,7 @@ public class ObjectArrayEx07_연습 {
 
 		Student[] studentList = new Student[3];
 		
-		studentList[0] = new Student();
+		studentList[0] = new Student();				
 		studentList[0].name = "학생0";
 		studentList[0].subjects = new Subject[3];
 		
