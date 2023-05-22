@@ -38,11 +38,25 @@ public class ObjectArrayEx01 {
 		}
 		
 		// [응용] 생각해보기 
-		? temp1 = productList; 	 		 // 주소 or 데이터 
-		? temp2 = productList[0]; 		// 주소 or 데이터 
-		? temp3 = productList[0].name;	// 주소 or 데이터 
-		? temp3 = productList[0].price;	// 주소 or 데이터 
+		Product[] temp1 = productList; 	 		 // [주소] or 데이터 
+		Product temp2 = productList[0]; 		 // [주소] or 데이터 
+		String temp3 = productList[0].name;		 // 주소 or [데이터] 
+		int temp4 = productList[0].price;		 // 주소 or [데이터]
 		
+		Product temp = productList[2];
+		System.out.println("temp : " + temp);  	 //	temp.뭐뭐를 찍어야 데이터나옴. 
+		System.out.println("productList[2] : " + productList[2]); 			//링크를 연결해서 
+		
+		System.out.println("temp.name : " + temp.name);
+		System.out.println("productList[2].name : " + productList[2].name);
+		
+		temp.name = "장패드1";												//값 똑같이 변함.
+		System.out.println("temp.name : " + temp.name);
+		System.out.println("productList[2].name : " + productList[2].name);	
+		
+		productList[2].name = "장패드2";
+		System.out.println("temp.name : " + temp.name);
+		System.out.println("productList[2].name : " + productList[2].name);
 		
 	}
 
