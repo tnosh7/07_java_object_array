@@ -33,85 +33,81 @@ public class ObjectArrayEx08_풀이 {
 		int studentCnt = 0;	// 학생 수
 		
 		while (true) {
-			
+			System.out.println("========================");
 			for (int i = 0; i < studentCnt; i++) {
-				System.out.println("[" + (i+1) + "]" + studentList[i].name + "학생>>>>>>") ;
+				System.out.println("["+ (i+1)+"]" + studentList[i].name + "학생>>>>");
+				System.out.println("========================");
 				if (studentList[i].subjects != null) {
-					for (int j = 0; j < studentList[i].subjects.length; j++) {
-						System.out.println("[" + (i+1) + "]" + studentList[i].subjects[j].name + "과목>>>>>" + studentList[i].subjects[j].score + "점");
-					}
+				for (int j = 0; j < studentList[i].subjects.length; j++) {
+					System.out.println("[" + (i+1) +"]" + studentList[i].subjects[j].name +"과목 : " + studentList[i].subjects[j].score+ "점");
+				}
 				}
 			}
-			System.out.println("[1]학생추가하기");
-			System.out.println("[2]과목추가하기");
-			System.out.println("[3]성적추가하기");
-			System.out.println("[4]종료하기");
+			System.out.println("========================");
+			System.out.println("[1]학생 추가하기\n[2]과목 추가하기\n[3]점수 추가하기\n[4]종료하기 ");
 			int sel = scan.nextInt();
 			
 			if (sel == 1) {
 				System.out.print("이름 입력 : ");
 				String name = scan.next();
-				
 				studentList[studentCnt] = new Student8_풀이();
 				studentList[studentCnt].name = name;
-				studentCnt++;
 				
+				studentCnt++;
 			}
 			else if (sel == 2) {
-				
 				for (int i = 0; i < studentCnt; i++) {
-					System.out.println("[" + (i+1) + "]" + studentList[i].name);
+					System.out.println("[" + (i+1) + "]" + studentList[i].name) ;
 				}
 				System.out.print("학생 선택 : ");
-				int idx =scan.nextInt() -1;
+				int select = scan.nextInt()-1;
 				
-				System.out.print("과목 이름 : ");
+				System.out.print("과목 입력 : ");
 				String subject = scan.next();
-				
-				if (studentList[idx].subjects == null) {
-					studentList[idx].subjects = new Subject8_풀이[1];
-					studentList[idx].subjects[0] = new Subject8_풀이(); 
-					studentList[idx].subjects[0].name = subject;
-				}
-				else {
-					//배열 길이  추가하기 
-					int size = studentList[idx].subjects.length;
+				if (studentList[select].subjects == null) {
 					
-					Subject8_풀이[]tmp = studentList[idx].subjects;
-					studentList[sel].subjects = new Subject8_풀이[size+1];
-					for (int i = 0; i < size; i++) {
-						studentList[sel].subjects[i] = tmp[i];
+					studentList[0].subjects = new Subject8_풀이[1];
+					studentList[0].subjects[0] = new Subject8_풀이();
+					studentList[0].subjects[0].name = subject;
+				}
+				
+				else {
+					int tmp = studentList[select].subjects.length;
+					Subject8_풀이[]temp = studentList[select].subjects;
+					studentList[select].subjects = new Subject8_풀이[tmp+1];
+					
+					for (int i = 0; i < tmp; i++) {
+						studentList[select].subjects[i] = temp[i];
 					}
-					studentList[sel].subjects[size] = new Subject8_풀이();
-					studentList[sel].subjects[size].name = subject;
-					tmp = null;
+					studentList[select].subjects[tmp] = new Subject8_풀이();
+					studentList[select].subjects[tmp].name = subject;
 				}
 			}
 			else if (sel == 3) {
-				
 				for (int i = 0; i < studentCnt; i++) {
-					System.out.println("[" + (i+1) + "]" + studentList[i].name);
+					System.out.println("[" + (i+1) + "]" + studentList[i].name) ;
 				}
-				System.out.println("학생 선택 : ");
+				System.out.print("학생 선택 :");
 				int select = scan.nextInt()-1;
-				
-				if (studentList[select].subjects != null) {
-					for (int i = 0; i < studentList[select].subjects.length; i++) {
-						System.out.println("[" + (i+1) + "]" + studentList[select].subjects[i].name);
-					}
-					System.out.print("과목 선택 : ");
-					int num =scan.nextInt()-1;
-					
-					System.out.println("성적 입력 : ");
-					int score = scan.nextInt();
-					
-					studentList[select].subjects[num].score = score;
+				for (int i = 0; i < studentList[select].subjects.length; i++) {
+					System.out.println("[" + (i+1) + "]" + studentList[select].subjects[i].name) ;
 				}
+				
+				System.out.print("과목 선택 : ");
+				int nnum = scan.nextInt()-1;
+				
+				System.out.print("성적 입력 : ");
+				int score = scan.nextInt();
+				
+				studentList[select].subjects[nnum].score = score;
 			}
 			else if (sel == 4) {
 				System.out.println("종료");
 				break;
 			}
+			
+			
+		
 		}
 		scan.close();
 	}
