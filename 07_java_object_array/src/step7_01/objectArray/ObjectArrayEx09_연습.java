@@ -99,7 +99,7 @@ class Controller {
 		if (stdCnt == 0) {
 			return data;				
 		}
-		data += stdCnt;
+		data += stdCnt;					//??????
 		data += "\n";							
 		for (int i = 0; i < stdCnt; i++) {
 			data += list[i].id;
@@ -114,7 +114,7 @@ class Controller {
 	}
 	
 	
-	void sortData() {					//
+	void sortData() {					//정렬
 		
 		for (int i = 0; i < stdCnt; i++) {
 			for (int j = i; j < stdCnt ; j++) {
