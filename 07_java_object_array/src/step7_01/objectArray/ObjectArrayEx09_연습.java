@@ -212,7 +212,7 @@ public class ObjectArrayEx09_연습 {
                 	
 					fw = new FileWriter(fileName);
 					String data = controller.outData();
-					if (!data.equals("")) {
+					if (!data.equals("")) {//내용이 있다면 
 						fw.write(data);
 						System.out.println(data);
 					}

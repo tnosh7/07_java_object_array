@@ -122,7 +122,7 @@ public class ObjectArrayEx14_연습 {
 		System.out.println(list);
 		
 		// 삽입하기
-		list.add(0, 9);
+		list.add(0, 19);
 		// 출력하기
 		System.out.println(list);
 
@@ -147,7 +147,17 @@ public class ObjectArrayEx14_연습 {
 		// 특정 위치의 값 수정하기
 		list.set(3, 5);
 		System.out.println(list);
-
+		//set을 이용해 정렬하기
+		for (int i = 0; i < list.size(); i++) {
+			for (int j = i; j < list.size(); j++) {
+				if (list.get(i)> list.get(j) ) {
+					int tmp = list.get(i);
+					list.set(i, list.get(j));
+					list.set(j, tmp);
+				}
+			}
+		}
+		System.out.println(list);
 		// 모든 데이터를 제거하기
 		list.clear();
 		System.out.println(list.size());

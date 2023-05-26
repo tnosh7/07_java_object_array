@@ -194,7 +194,7 @@ public class ObjectArrayEx15_연습 {
 						
 						fr = new FileReader(file);
 						br = new BufferedReader(fr);
-						ArrayList<StudentDTO> studentList = new ArrayList<StudentDTO>();
+						ArrayList<StudentDTO> studentList = new ArrayList<StudentDTO>();//
 						
 						String line = br.readLine();
 						int lineCnt = Integer.parseInt(line);

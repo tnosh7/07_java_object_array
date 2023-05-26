@@ -6,212 +6,205 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
-// DTO (DataTransferObject) : 데이터 전송 모델 객체
-class StuDTO{
+class StuDTO { 
 	
 	String id;
-	String pw;
+	String pw; 
 	
-	void printData() {
-		System.out.println("이름 : " + this.id + " 비밀번호 : " + this.pw);
+	void printData() { 
+		System.out.println("이름 : " + id + "\t비밀번호 :" + pw);
 	}
-	
 }
 
-
-class StuController{
+class StuController { 
 	
-	ArrayList<StuDTO> studentList = new ArrayList<StuDTO>();
+	ArrayList<StuDTO> stuList = new ArrayList<StuDTO>();
 	
-	void addStudent(StuDTO stuDTO) {
-		studentList.add(stuDTO);
-	}
-	
-	StuDTO removeStudent(int index) {
-		StuDTO delObj = studentList.get(index);
-		studentList.remove(index);
-		return delObj;
-	}
-	
-	
-	int checkId(StuDTO stuDTO) {
-		
-		int check = -1; 
-		for (int i = 0; i < studentList.size(); i++) {
-			if(studentList.get(i).id.equals(stuDTO.id)) {
-			check = i;
-			break;
+	int checkStu (StuDTO stuDTO) { 
+		int check = -1 ;
+		for (int i = 0; i < stuList.size(); i++) {
+			if (stuList.get(i).id.equals(stuDTO)) {
+				check = i;
+				break;
 			}
 		}
 		return check;
 	}
-	void printStudent() {
-		int check = -1;
-		for (int i = 0; i < studentList.size(); i++) {
-			studentList.get(i).printData();
+	
+	void addStu (StuDTO stuDTO) {
+		stuList.add(stuDTO);
+	}
+	StuDTO removeStu (int index) {
+		StuDTO delObj = stuList.get(index);
+		stuList.remove(index);
+		return delObj;
+	}
+	
+	void printStu() {
+		for (int i = 0; i < stuList.size(); i++) {
+			stuList.get(i).printData();
 		}
-	}	
-	
-	
-	String outData() {
+	}
+	void sortData() {
+		
+		for (int i = 0; i < stuList.size(); i++) {
+			for (int j = i; j < stuList.size(); j++) {
+				if (stuList.get(i).id.compareTo(stuList.get(j).id) > 0) {
+					String tmp = stuList.get(i).id;
+					stuList.get(i).id = stuList.get(j).id;
+					stuList.get(j).id = tmp;
+					
+					String tmp2 = stuList.get(i).pw;
+					stuList.get(i).pw = stuList.get(j).pw;
+					stuList.get(j).pw = tmp2;
+				}
+			}
+		}
+	}
+	String outData() { 
 		String data = "";
-		int lineCnt = studentList.size();
-		if (lineCnt ==0 ) {
+		int count = stuList.size();
+		if (count == 0) {
 			return data;
 		}
-		data += lineCnt; 
+		data += count;
 		data += "\n";
-		for (int i = 0; i < lineCnt; i++) {
-			data += studentList.get(i).id;
-			data += "/";
-			data += studentList.get(i).pw;
-			if (lineCnt-1 != i) {
-				data += "\n";
+		for (int i = 0; i < count; i++) {
+			data+= stuList.get(i).id;
+			data+= ",";
+			data+= stuList.get(i).pw;
+			if (count -1 != i) {
+				data+="\n";
 			}
 		}
 		return data;
 	}
-	
-	
-	void sortData() {
-		for (int i = 0; i < studentList.size(); i++) {
-			for (int j = i; j < studentList.size(); j++) {
-				if (studentList.get(i).id.compareTo() > 0 ) {
-					
-				}
-			}
-		}
-	
+	void loadStu(ArrayList<StuDTO>stuList) {
+		this.stuList = stuList;
 	}
 	
-	
-	void loadStudent(ArrayList<StuDTO> studentList ) {
-		this.studentList = studentList;
-	}	
-	
-	
-	int getSize() {
-		return studentList.size();
+	int getSize() { 
+		int size = stuList.size();
+		return size;
 	}
-	
 }
 
 public class ObjectArrayEx15_풀이 {
-
 	public static void main(String[] args) {
-		
 		Scanner scan = new Scanner(System.in);
-		StuController controller = new StuController();
-		
-		String fileName = "student_arraylist_db.txt";
-		
+		StuController contrl = new StuController();
+	
+		String fileName = "student_arrayList";
 		
 		while (true) {
 			
-			System.out.println("1.가입 2.탈퇴 3.정렬 4.출력 5.저장 6.로드 7.종료");
-			int sel = scan.nextInt();
-			if (sel == 1 ) {
+			System.out.print("1.가입\n2.탈퇴\n3.정렬\n4.출력\n5.저장\n6.로드\n7.종료");
+			int sel =scan.nextInt();
+			
+			if (sel == 1) {
+				
 				StuDTO temp = new StuDTO();
 				
 				System.out.print("[가입] ID 입력 : ");
 				temp.id = scan.next();
-				int check = controller.checkId(temp);
 				
-				if (check == -1 ) {
+				int check = contrl.checkStu(temp);
+				
+				if (check == -1) {
 					System.out.print("[가입] PW 입력 : ");
 					temp.pw = scan.next();
-					controller.addStudent(temp);
-					System.out.println(temp.id + "님, 가입을 환영합니다.");
+					
+					contrl.addStu(temp);
+					System.out.println(temp.id + "님 가입추카");
 				}
-				else {
-					System.out.println("중복아이디입니다.");
-				}
+				else System.out.println("중복아이디");
 			}
-			else if (sel ==2 ) {
-				controller.printStudent();
+			else if (sel == 2) {
+				contrl.printStu();
 				StuDTO temp = new StuDTO();
 				
-				System.out.print("[탈퇴] ID를 입력 : ");
+				System.out.println("탈퇴 아이디 입력 :");
 				temp.id = scan.next();
 				
-				int check = controller.checkId(temp);
+				int check = contrl.checkStu(temp);
+				
 				if (check == -1) {
-					System.out.println("없는아이디입니다.");
+					System.out.println("가입후 이용");
 				}
 				else {
-					System.out.println(controller.removeStudent(check).id + "님 탈퇴축하");
+					System.out.println(contrl.removeStu(check).id + "님 탈퇴되었씁니다.");
 				}
 			}
 			else if (sel == 3) {
-				
-				controller.sortData();
-				controller.printStudent();
+				contrl.sortData();
+				contrl.printStu();
 			}
-			else if (sel ==4 ) {
-				controller.printStudent();
+			else if (sel == 4) {
+				contrl.printStu();
 			}
 			else if (sel == 5) {
 				FileWriter fw = null;
-				if (controller.getSize() == 0) continue;
 				
+				if (contrl.getSize() ==0 ) {
+					continue;
+				}
 				try {
-					fw = new FileWriter(fileName);
-					String data = controller.outData();
-					
+					fw= new FileWriter(fileName);
+					String data = contrl.outData();
 					if (!data.equals("")) {
 						fw.write(data);
 						System.out.println(data);
 					}
+					
 				} catch (IOException e) {
 					e.printStackTrace();
-				} finally {try {fw.close();} catch (IOException e) {e.printStackTrace();}
+				} finally {
+					try {fw.close();} catch (IOException e) {e.printStackTrace();}
 				}
 			}
-			else if (sel ==6) { 
+			else if (sel == 6) {
 				FileReader fr = null;
-				BufferedReader br = null; 
+				BufferedReader br = null;
 				
+				File file = new File(fileName);
+				if (file.exists()) {
 					try {
-						File file = new File(fileName);
-						
-						if (file.exists()) {
 						fr = new FileReader(file);
 						br = new BufferedReader(fr);
-						
-						ArrayList<StuDTO> studentList = new ArrayList<StuDTO>();
+						ArrayList<StuDTO> studList = new ArrayList<StuDTO>();
 						
 						String line = br.readLine();
-						int lineCnt = Integer.parseInt(line);
+						int cnt= Integer.parseInt(line);
 						
-						for (int i = 0; i < lineCnt; i++) {
+						for (int i = 0; i < cnt; i++) {
 							StuDTO temp = new StuDTO();
 							line = br.readLine();
-							String value[] = line.split(",");
+							String[]value = line.split(",");
 							temp.id = value[0];
 							temp.pw = value[1];
-							studentList.add(temp);
+							studList.add(temp);
 						}
-						controller.loadStudent(studentList);
-						}
-						controller.printStudent();
-						
-					} catch (FileNotFoundException e) {
+						contrl.loadStu(studList);
+						contrl.printStu();
+					} catch (Exception e) {
 						e.printStackTrace();
 					} finally {
-						try {br.close();} catch (IOException e) {e.printStackTrace();}}
-						try {fr.close();} catch (IOException e) {e.printStackTrace();}
+						try {br.close();} catch (IOException e) {e.printStackTrace();}
+						try {fr.close();} catch (IOException e) {e.printStackTrace();
+}
+					}
 				}
-			else if (sel == 7) {
-				System.out.println("프로그램 종료");
+			}
+			else if(sel == 7) {
+				System.out.println("종료");
 				break;
 			}
-			scan.close();
 		}
+				
+	scan.close();
 	}
-		
 
 }
-
