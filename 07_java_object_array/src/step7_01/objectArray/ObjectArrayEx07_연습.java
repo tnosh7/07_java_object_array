@@ -27,7 +27,7 @@ public class ObjectArrayEx07_연습 {
 		studentList[0] = new Student();			 // student클래스와 링크 연결
 		studentList[0].name = "학생0";			
 		studentList[0].subjects = new Subject[3];// student클래스의 subject배열을  subject클래스에 링크연결
-													
+											
 		for (int i = 0; i < 3; i++) {
 			studentList[0].subjects[i] = new Subject();	//subject배열 인덱스에 링크 연결 
 			studentList[0].subjects[i].name = "학생0 과목" + i;	

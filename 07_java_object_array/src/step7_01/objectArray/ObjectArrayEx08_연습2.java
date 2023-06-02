@@ -1,7 +1,7 @@
 package step7_01.objectArray;
 import java.util.Scanner;
 
-class Subject1{
+class Subj{
 	
 	String name;
 	int score;
@@ -9,9 +9,9 @@ class Subject1{
 }
 
 
-class Student1{
+class Stud{
 	
-	Subject1[] subjects;
+	Subj[] subjects;
 	String name;
 
 }
@@ -28,84 +28,71 @@ public class ObjectArrayEx08_연습2 {
 		//   김철수 : 과목3개 수학 50 국어50 영어 60 
 		//   이만수 : 과목2개 수학 20 국어 30 
 		//   이영희 : 과목1개 수학 100
-		
-		Student1[] studentList = new Student1[3];
-		int studentCnt = 0;	// 학생 수
+		Stud[] sList = new Stud[3];
+		int sCnt = 0;
 		
 		while (true) {
-		
-			for (int i = 0; i < studentCnt; i++) {
-				System.out.println("[" + (i+1) + "]" + studentList[i].name);
-				if (studentList[i].subjects != null) {
-					for (int j = 0; j < studentList[i].subjects.length; j++) {
-						System.out.println("[" + (j+1) + "]" + studentList[i].subjects[j].name + "과목 \t성적  :" + studentList[i].subjects[j].score + "점");
+			for (int i = 0; i < sList.length; i++) {
+				sList[i] = new Stud();
+				if (sList[i].subjects != null) {
+					for (int j = 0; j < sList[i].subjects.length; j++) {
+						System.out.println((i+1) + ". name : " + sList[i].subjects[j].name + "\t score : " + sList[i].subjects[j].score);
 					}
 				}
 				System.out.println();
 			}
-			System.out.print("1.이름 추가하기\n2.과목 추가하기\n3.성적 추가하기\n4.종료하기");
+			System.out.println("[1.이름 추가하기]\t[2.과목 추가하기]\t[3.성적 추가하기]\t[4.종료하기]");
+			System.out.print("메뉴 선택 : ");
 			int sel = scan.nextInt();
 			
-			if(sel == 1) {
-				
-				System.out.println("이름 입력 : ");
-				String name = scan.next();
-				
-				studentList[studentCnt] = new Student1();
-				studentList[studentCnt].name = name;
-				studentCnt++;
-			}
-			
-			else if (sel == 2) {
-				for (int i = 0; i < studentCnt; i++) {
-					System.out.println("["+ (i+1) +"]" + studentList[i].name);
+			if (sel == 1) {
+				if (sCnt == sList.length) {
+					System.out.println("더이상 입력할 수 없습니다.");
 				}
-				System.out.print("이름 선택 :");
-				int select  = scan.nextInt()-1;
+				Stud temp = new Stud();
+				System.out.print("이름 입력 : ");
+				temp.name = scan.next();
 				
-				System.out.print("과목 입력 : ");
-				String sub  = scan.next();
-				if (studentList[select].subjects == null) {
-					studentList[select].subjects = new Subject1[1];
-					studentList[select].subjects[0] = new Subject1();
-					studentList[select].subjects[0].name = sub;
+				sList[sCnt].name = temp.name;
+				sCnt++;
+			}
+			else if (sel == 2) {
+				for (int i = 0; i < sCnt; i++) {
+					System.out.println((i+1) + sList[i].name);
+				}
+				System.out.print("이름을 선택해주세요 :");
+				int idx = scan.nextInt()-1 ;
+				
+				System.out.println("과목을 입력해주세요 : ");
+				String sub = scan.next();
+				
+				if (sList[idx].subjects == null) {
+					sList[idx].subjects = new Subj[1];
+					sList[idx].subjects[0] = new Subj();
+					sList[idx].subjects[0].name = sub;
+					
 				}
 				else {
-					int length = studentList[select].subjects.length;
-					Subject1[] tmp = studentList[select].subjects;
- 					studentList[select].subjects = new Subject1[length+1];
-					for (int i = 0; i < length; i++) {
-						studentList[select].subjects[i] = tmp[i];
-					}
-					studentList[select].subjects[length] = new Subject1();
-					studentList[select].subjects[length].name = sub;
- 				}
-			}
-			else if (sel ==3) {
-				for (int i = 0; i < studentCnt; i++) {
-					System.out.println("["+ (i+1) +"]" + studentList[i].name);
+					int leng = sList[idx].subjects.length;
+					Subj[]temp = sList[idx].subjects;
+					sList[idx].subjects = new Subj[leng+1];
+					
+					
 				}
-				System.out.print("이름 선택 :");
-				int select  = scan.nextInt()-1;
-				
-				for (int i = 0; i < studentList[select].subjects.length; i++) {
-					System.out.println("["+ (i+1) +"]" + studentList[select].subjects[i].name);
-				}
-				System.out.print("과목 선택 :");
-				int subnum  = scan.nextInt()-1;
-				
-				System.out.print("성적 입력 : ");
-				int score = scan.nextInt();
-				
-				studentList[select].subjects[subnum].score = score;
 				
 			}
-			
+			else if (sel == 3) {}
 			else if (sel == 4) {
+				System.out.println("프로그램 종료");
 				break;
 			}
+			
+		
+		
 		}
-		scan.close();
+		
+		
+		
 
 	}
 
