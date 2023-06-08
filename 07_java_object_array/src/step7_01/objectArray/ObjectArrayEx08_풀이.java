@@ -76,7 +76,7 @@ public class ObjectArrayEx08_풀이 {
 					Subject8_풀이[]temp = studentList[select].subjects;
 					studentList[select].subjects = new Subject8_풀이[tmp+1];
 					
-					for (int i = 0; i < tmp; i++) {
+					for (int i = 0; i < tmp; i++) {////
 						studentList[select].subjects[i] = temp[i];
 					}
 					studentList[select].subjects[tmp] = new Subject8_풀이();
