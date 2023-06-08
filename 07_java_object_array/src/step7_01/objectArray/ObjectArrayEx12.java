@@ -17,7 +17,7 @@ class Manager {}
 class Supervisor {}
 
 
-class GenericEx<T> {				//GenericEx<k,v> -hashmap처럼 
+class GenericEx<T> {				//GenericEx<k,v> -hashmap처럼 사용가능
 	
 	Object[] arr= new Object[3];
 	int idx = 0;
