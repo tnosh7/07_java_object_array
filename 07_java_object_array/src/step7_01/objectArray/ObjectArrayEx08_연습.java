@@ -72,7 +72,7 @@ public class ObjectArrayEx08_연습 {
 				}
 				else {
 					int length = studentList[select].subjects.length;
-					Subject1[] tmp = studentList[select].subjects;
+					Subject1[] tmp = studentList[select].subjects;//
  					studentList[select].subjects = new Subject1[length+1];
 					for (int i = 0; i < length; i++) {
 						studentList[select].subjects[i] = tmp[i];
