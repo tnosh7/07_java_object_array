@@ -8,7 +8,9 @@ class Account {
 }
 
 
-		
+public class ObjectArrayEx03_연습 {
+
+	public static void main(String[] args) {
 		Account[] accountList = new Account[2];
 		
 		for (int i = 0; i < accountList.length; i++) {
