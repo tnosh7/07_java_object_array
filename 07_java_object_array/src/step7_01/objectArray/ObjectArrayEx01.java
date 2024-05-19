@@ -20,7 +20,7 @@ public class ObjectArrayEx01 {
 		productList[0] = new Product();
 		productList[1] = new Product();
 		
-		Product p = new Product();
+		Product p = new Product(); 
 		p.name = "장패드";
 		p.price = 10000;
 		
