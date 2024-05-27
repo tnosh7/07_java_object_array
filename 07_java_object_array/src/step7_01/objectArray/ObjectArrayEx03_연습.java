@@ -26,7 +26,6 @@ public class ObjectArrayEx03_연습 {
 		for (int i = 0; i < accountList.length; i ++) {
 			System.out.println(accountList[i].id + " " + accountList[i].money);
 		}
-		
 		Account temp = accountList[1];
 		temp.id = "zxcv1234";
 		System.out.println("=====================================");
