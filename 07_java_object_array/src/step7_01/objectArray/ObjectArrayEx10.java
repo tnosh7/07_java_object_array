@@ -58,9 +58,10 @@ public class ObjectArrayEx10 {
 		// add(value) : arrayList의 맨뒤에 value를 추가한다.
 		// add(index,value) : arrayList의 index번째에 value를 추가한다.
 		
+		ArrayList<Integer> list2 = new ArrayList<Integer>();
 		arr[0] = 10;
 		arr[1] = 20;
-		arr[2] = 30;
+		arr[2] = 30; 
 		arr[3] = 40;
 		arr[4] = 50;
 		
